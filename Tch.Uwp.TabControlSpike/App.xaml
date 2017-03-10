@@ -3,6 +3,17 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Tch.Uwp.TabControlSpike"
-    RequestedTheme="Light">
-
+  xmlns:viewModel="using:Tch.Uwp.TabControlSpike.ViewModel"
+  xmlns:view="using:Tch.Uwp.TabControlSpike.View"
+  RequestedTheme="Dark">
+  <Application.Resources>
+    <!--No implicit DataTemplates in UWP. That's why we have to use a DataTemplateSelector-->
+    <view:DetailViewTemplateSelector x:Key="DetailViewTemplateSelector"/>
+    <DataTemplate x:Key="FriendDetailViewModel">
+      <view:FriendDetailView/>
+    </DataTemplate>
+    <DataTemplate x:Key="BookDetailViewModel">
+      <view:BookDetailView/>
+    </DataTemplate>
+  </Application.Resources>
 </Application>
