@@ -25,6 +25,11 @@ namespace Tch.Uwp.TabControlSpike.ViewModel
       }
     }
 
+    public void Select()
+    {
+        _eventAggregator.GetEvent<SelectTabItemEvent>().Publish(this);
+    }
+
     public async void Close()
     {
       var args = new CancelEventArgs();

@@ -1,6 +1,7 @@
 ﻿using Prism.Events;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Tch.Uwp.TabControlSpike.Event;
 
 namespace Tch.Uwp.TabControlSpike.ViewModel
@@ -19,6 +20,7 @@ namespace Tch.Uwp.TabControlSpike.ViewModel
     {
       _eventAggregator = eventAggregator;
       _eventAggregator.GetEvent<CloseTabItemEvent>().Subscribe(CloseDetail);
+      _eventAggregator.GetEvent<SelectTabItemEvent>().Subscribe(SelectDetail);
       _friendDetailCreator = friendDetailCreator;
       _bookDetailCreator = bookDetailCreator;
 
@@ -62,6 +64,11 @@ namespace Tch.Uwp.TabControlSpike.ViewModel
       {
         SelectedDetail = null;
       }
+    }
+
+    private void SelectDetail(DetailViewModelBase item)
+    {
+      SelectedDetail = item;
     }
   }
 }

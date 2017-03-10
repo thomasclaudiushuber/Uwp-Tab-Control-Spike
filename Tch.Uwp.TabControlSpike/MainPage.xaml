@@ -5,20 +5,36 @@
     xmlns:local="using:Tch.Uwp.TabControlSpike"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:viewModel="using:Tch.Uwp.TabControlSpike.ViewModel"
-  xmlns:view="using:Tch.Uwp.TabControlSpike.View"
+    xmlns:viewModel="using:Tch.Uwp.TabControlSpike.ViewModel"
+    xmlns:view="using:Tch.Uwp.TabControlSpike.View"
     mc:Ignorable="d">
-
   <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
       <RowDefinition/>
     </Grid.RowDefinitions>
-    <StackPanel Orientation="Horizontal">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="200"/>
+      <ColumnDefinition/>
+    </Grid.ColumnDefinitions>
+    <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2">
       <Button Content="Open new friend" Margin="10" Click="{x:Bind ViewModel.OpenNewFriendDetail}"/>
       <Button Content="Open new book" Margin="10" Click="{x:Bind ViewModel.OpenNewBookDetail}"/>
     </StackPanel>
-    <Pivot Grid.Row="1"
+    <TextBlock Grid.Row="1" Text="Navigation" Margin="10"/>
+    <ScrollViewer Grid.Row="2">
+      <ItemsControl ItemsSource="{x:Bind ViewModel.Details}">
+        <ItemsControl.ItemTemplate>
+          <DataTemplate x:DataType="viewModel:DetailViewModelBase">
+            <Button Content="{Binding Title}"  Click="{x:Bind Select}" Margin="2"/>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+    </ScrollViewer>
+    <Pivot Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"
+           Margin="10"
+           IsHeaderItemsCarouselEnabled="False"
            ItemsSource="{x:Bind ViewModel.Details}" 
            SelectedItem="{x:Bind ViewModel.SelectedDetail,Mode=TwoWay}"
            ItemTemplateSelector="{StaticResource DetailViewTemplateSelector}">
@@ -30,7 +46,8 @@
               <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="{x:Bind Title,Mode=OneWay}"/>
-            <Button Grid.Column="1" Content="X" Click="{x:Bind Close}"/>
+            <Button Grid.Column="1" Content="X" Click="{x:Bind Close}"
+                    Style="{StaticResource PivotHeaderCloseButton}"/>
           </Grid>
         </DataTemplate>
       </Pivot.HeaderTemplate>
