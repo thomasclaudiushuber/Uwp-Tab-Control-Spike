@@ -33,11 +33,11 @@
       </ItemsControl>
     </ScrollViewer>
     <Pivot Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"
-           Margin="10"
-           IsHeaderItemsCarouselEnabled="False"
-           ItemsSource="{x:Bind ViewModel.Details}" 
-           SelectedItem="{x:Bind ViewModel.SelectedDetail,Mode=TwoWay}"
-           ItemTemplateSelector="{StaticResource DetailViewTemplateSelector}">
+            Margin="10"
+            IsHeaderItemsCarouselEnabled="False"
+            ItemsSource="{x:Bind ViewModel.Details}" 
+            SelectedItem="{x:Bind ViewModel.SelectedDetail,Mode=TwoWay}"
+            ItemTemplateSelector="{StaticResource DetailViewTemplateSelector}">
       <Pivot.HeaderTemplate>
         <DataTemplate x:DataType="viewModel:DetailViewModelBase">
           <Grid>

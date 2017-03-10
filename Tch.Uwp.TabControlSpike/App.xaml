@@ -30,12 +30,14 @@
           <SolidColorBrush x:Key="PivotHeaderItemBackgroundSelected" Color="#007ACC"/>
           <SolidColorBrush x:Key="PivotHeaderItemBackgroundUnselected" Color="#333333"/>
           <SolidColorBrush x:Key="PivotHeaderItemBackgroundUnselectedPointerOver" Color="#555555"/>
+
+          <!--Without this the header is not aligned with the content-->
           <Thickness x:Key="PivotItemMargin">0</Thickness>
         </ResourceDictionary>
       </ResourceDictionary.ThemeDictionaries>
     </ResourceDictionary>
 
-    
-   
+
+
   </Application.Resources>
 </Application>
