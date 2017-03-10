@@ -8,8 +8,9 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
-  <Grid>
+  <Grid Background="#555555">
     <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
       <RowDefinition Height="Auto"/>
       <RowDefinition Height="Auto"/>
       <RowDefinition Height="Auto"/>
@@ -18,7 +19,8 @@
     <TextBlock FontSize="30" Margin="10" Foreground="White">
       <Run Text="Friend-Details for "/><Run Text="{Binding Title,Mode=OneWay}"/>
     </TextBlock>
-    <TextBox Grid.Row="1" Text="{Binding FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Header="Firstname" Margin="10"/>
-    <TextBox Grid.Row="2" Text="{Binding LastName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Header="Lastname" Margin="10"/>
+    <TextBlock Grid.Row="1" Margin="10">Change this item, and you'll get a message when you try to close the tab</TextBlock>
+    <TextBox Grid.Row="2" Margin="10" Text="{Binding FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Header="Firstname"/>
+    <TextBox Grid.Row="3" Margin="10" Text="{Binding LastName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Header="Lastname"/>
   </Grid>
 </UserControl>

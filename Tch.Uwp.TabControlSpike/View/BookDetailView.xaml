@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
-  <Grid>
+  <Grid Background="#555555">
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto"/>
       <RowDefinition Height="Auto"/>
@@ -17,6 +17,6 @@
     <TextBlock FontSize="30" Margin="10" Foreground="White">
       <Run Text="Book-Details for "/><Run Text="{Binding Title,Mode=OneWay}"/>
     </TextBlock>
-    <TextBox Grid.Row="1" Text="{Binding Title,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Header="Title" Margin="10"/>
+    <TextBox Grid.Row="1" Margin="10" Header="Title" Text="{Binding Title,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
   </Grid>
 </UserControl>

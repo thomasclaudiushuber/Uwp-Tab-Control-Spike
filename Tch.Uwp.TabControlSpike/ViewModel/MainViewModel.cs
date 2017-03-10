@@ -42,6 +42,7 @@ namespace Tch.Uwp.TabControlSpike.ViewModel
       var item = _friendDetailCreator();
       item.FirstName = "Thomas";
       item.LastName = "Huber " + _newItemCounter++;
+      item.HasChanges = false;
       Details.Add(item);
       SelectedDetail = item;
     }

@@ -1,5 +1,6 @@
 ﻿using Prism.Events;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using Tch.Uwp.TabControlSpike.Event;
 
 namespace Tch.Uwp.TabControlSpike.ViewModel
@@ -24,10 +25,10 @@ namespace Tch.Uwp.TabControlSpike.ViewModel
       }
     }
 
-    public void Close()
+    public async void Close()
     {
       var args = new CancelEventArgs();
-      OnCloseDetail(args);
+      await OnCloseDetailAsync(args);
 
       if (!args.Cancel)
       {
@@ -35,6 +36,6 @@ namespace Tch.Uwp.TabControlSpike.ViewModel
       }
     }
 
-    protected virtual void OnCloseDetail(CancelEventArgs args) { }
+    protected virtual Task OnCloseDetailAsync(CancelEventArgs args) { return Task.FromResult(0); }
   }
 }

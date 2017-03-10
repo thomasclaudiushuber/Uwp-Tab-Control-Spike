@@ -1,4 +1,8 @@
-﻿using Prism.Events;
+﻿using System;
+using System.ComponentModel;
+using Prism.Events;
+using Tch.Uwp.TabControlSpike.View.Service;
+using System.Threading.Tasks;
 
 namespace Tch.Uwp.TabControlSpike.ViewModel
 {
@@ -6,8 +10,13 @@ namespace Tch.Uwp.TabControlSpike.ViewModel
   {
     private string _firstName;
     private string _lastName;
+    private bool _hasChanges;
+    private IMessageDialogService _messageDialogService;
 
-    public FriendDetailViewModel(IEventAggregator eventAggregator) : base(eventAggregator) { }
+    public FriendDetailViewModel(IEventAggregator eventAggregator, IMessageDialogService messageDialogService) : base(eventAggregator)
+    {
+      _messageDialogService = messageDialogService;
+    }
 
     public string FirstName
     {
@@ -16,6 +25,7 @@ namespace Tch.Uwp.TabControlSpike.ViewModel
       {
         _firstName = value;
         OnPropertyChanged();
+        HasChanges = true;
         UpdateTitle();
       }
     }
@@ -27,7 +37,27 @@ namespace Tch.Uwp.TabControlSpike.ViewModel
       {
         _lastName = value;
         OnPropertyChanged();
+        HasChanges = true;
         UpdateTitle();
+      }
+    }
+
+    public bool HasChanges
+    {
+      get { return _hasChanges; }
+      set
+      {
+        _hasChanges = value;
+        OnPropertyChanged();
+      }
+    }
+
+    protected async override Task OnCloseDetailAsync(CancelEventArgs args)
+    {
+      if (HasChanges)
+      {
+        var result = await _messageDialogService.ShowOkCancelDialogAsync("You'll loose your changes when you close this tab (Yeah, I know, there's no save-button yet ;-)). Continue?");
+        args.Cancel = result == MessageDialogResult.Cancel;
       }
     }
 
